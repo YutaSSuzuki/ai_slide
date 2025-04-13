@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: docs  # HTMLの出力先を指定
+
+website:
+  title: "My Website"
+  sidebar:
+    contents: auto  # 細かく指定もできるけどとりあえず任せる
+
+format:
+  html:
+    theme: cosmo
+  revealjs:
+    theme: default
+    scrollable: true
+    history: false

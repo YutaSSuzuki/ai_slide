@@ -1,0 +1,167 @@
+/*-- scss:defaults --*/
+// 変数定義がなくてもOK
+
+/*-- scss:rules --*/
+
+/* -----------------------------
+   🎨 フォントサイズ設定
+------------------------------ */
+$font-title: 2.0em;         // スライドタイトル（h1等）
+$font-section: 1.5em;       // スライド見出し（h2）
+$font-body: 0.7em;          // 本文・リスト
+$font-footnote: 0.75em;     // 脚注など小さめの文字
+$font-table: 0.5em;        // 表の中の文字サイズ
+
+/* -----------------------------
+   🌈 カラーパレット設定（色の変数定義）
+------------------------------ */
+$color-text: #2c3e50;            // 通常テキスト色
+$color-accent: #2980b9;          // 強調青
+$color-warning: #e74c3c;         // 警告赤
+$color-border: #bdc3c7;          // 枠線色
+$color-bg: #f8f9fa;              // スライドの背景色
+$color-slide-outline: #e0e0e0;   // Reveal全体の背景（グレー）
+$color-table-header: #eeeeee;    // 表のヘッダー背景
+
+/* -----------------------------
+   🎨 カラーパレットのユーティリティクラス
+------------------------------ */
+
+/* テキスト色 */
+.text-primary     { color: #2c3e50 !important; }  // 標準テキスト色（濃紺）
+.text-accent      { color: #2980b9 !important; }  // キーワード強調（青）
+.text-warning     { color: #e74c3c !important; }  // 注意・警告（赤）
+.text-muted       { color: #7f8c8d !important; }  // 補足的なグレー
+.text-light       { color: #bdc3c7 !important; }  // 枠・箇条書きマーク向け
+.text-success     { color: #27ae60 !important; }  // 成功・完了（緑）
+
+/* 背景色（ブロック用） */
+.bg-primary       { background-color: #2c3e50 !important; color: #fff !important; }
+.bg-accent        { background-color: #2980b9 !important; color: #fff !important; }
+.bg-warning       { background-color: #e74c3c !important; color: #fff !important; }
+.bg-muted         { background-color: #f4f4f4 !important; }
+.bg-light         { background-color: #f8f9fa !important; }
+.bg-success       { background-color: #dff0d8 !important; }
+
+/* 境界線 */
+.border-primary   { border: 1px solid #2c3e50 !important; }
+.border-accent    { border: 1px solid #2980b9 !important; }
+.border-warning   { border: 1px solid #e74c3c !important; }
+.border-light     { border: 1px solid #bdc3c7 !important; }
+.border-muted     { border: 1px solid #ccc !important; }
+
+/* 文字の太さ */
+.fw-bold          { font-weight: bold; }
+.fw-normal        { font-weight: normal; }
+
+/* -----------------------------
+   🖥 Reveal.js スライド全体設定
+------------------------------ */
+.reveal {
+  background-color: $color-slide-outline;  // Reveal本体の背景（外枠）
+  color: $color-text;
+
+
+  .reveal .title-slide {
+    background-color: $color-bg;
+    padding: 1.5em;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    border-radius: 6px;
+  }
+
+  // 各スライド（section要素）
+  section {
+    background-color: $color-bg;           // 各スライドの背景色
+    padding: 1.5em;                        // 内側余白
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);  // 薄い影で立体感
+    border-radius: 6px;                    // スライド角を丸める
+  }
+
+  /* -----------------------------
+     🧱 スライド見出し（h2）
+  ------------------------------ */
+  h2 {
+    font-size: $font-section;
+    color: $color-text;
+    font-weight: bold;
+    margin-bottom: 0.3em;                  // 見出し下の余白
+    border-bottom: 1px solid $color-border; // 下線で見出しを区切る
+    padding-bottom: 0.1em;
+  }
+
+  /* -----------------------------
+     📄 本文・リスト（p, li）
+  ------------------------------ */
+  p, li {
+    font-size: $font-body;
+    color: $color-text;
+    line-height: 1.4;                      // 行間をやや広めに
+    margin: 0.2em 0;
+  }
+
+  /* -----------------------------
+     📊 表（table）
+  ------------------------------ */
+  table {
+    width: 85%;                            // スライド幅の85%で表示
+    max-width: 85%;                        // はみ出さないよう制限
+    margin-bottom: 3em;                    // 表の下に余白（見切れ対策）
+    font-size: $font-table;                // 表内の文字サイズ
+    border-collapse: collapse;             // 枠線を1本にまとめる
+    table-layout: auto;                    // 内容に応じて幅調整
+    overflow-x: visible;                   // 横スクロールを許可
+    box-sizing: border-box;                // padding含めてサイズ計算
+  }
+
+  th, td {
+    height: 3em;                           // セルの縦幅を固定して統一
+    padding: 0.3em 0.4em;                  // セル内の余白（上下 左右）
+    border: 1px solid $color-border;       // セル枠線
+    border-bottom: 1px solid $color-border; // 明示的な下枠線
+    word-break: keep-all;                 // 単語途中で改行させない
+    white-space: normal;                  // 自然な折返しは許可
+    overflow-wrap: break-word;            // 長文は折返し許可
+    vertical-align: top;                  // 上詰め
+    box-sizing: border-box;
+  }
+
+  th {
+    background-color: $color-table-header; // ヘッダ行の背景色
+    text-align: center;                    // 見出し中央揃え
+  }
+
+  tr:hover {
+    background-color: lighten($color-border, 30%); // ホバー時の薄グレー
+  }
+
+  /* -----------------------------
+     🔠 強調テキスト（strong / em）
+  ------------------------------ */
+  strong {
+    color: $color-accent;
+    font-weight: bold;
+  }
+
+  em {
+    color: $color-warning;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  /* -----------------------------
+     📱 レスポンシブ調整
+  ------------------------------ */
+  @media screen and (max-width: 768px) {
+    table {
+      font-size: 0.7em;
+    }
+
+    h2 {
+      font-size: 1.3em;
+    }
+
+    p, li {
+      font-size: 0.85em;
+    }
+  }
+}
